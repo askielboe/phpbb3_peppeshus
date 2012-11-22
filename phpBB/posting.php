@@ -1147,7 +1147,7 @@ if ($submit || $preview || $refresh)
 			}
 			else
 			{
-				meta_refresh(3, $redirect_url);
+				meta_refresh(0, $redirect_url);
 
 				$message = ($mode == 'edit') ? 'POST_EDITED' : 'POST_STORED';
 				$message = $user->lang[$message] . '<br /><br />' . sprintf($user->lang['VIEW_MESSAGE'], '<a href="' . $redirect_url . '">', '</a>');
