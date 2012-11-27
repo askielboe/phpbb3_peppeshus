@@ -232,14 +232,17 @@
 	<fieldset class="display-options" style="margin-top: 0; ">
 		<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
 		<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-		<!-- IF not S_IS_BOT -->
-		<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
-		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> <label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
-		<!-- ENDIF -->
 	</fieldset>
 
 	</form>
 <!-- ENDIF -->
+
+<ul class="menu left">
+	<li class="nav-jumpbox<!-- IF SCRIPT_NAME == 'index' and not .navlinks --> active<!-- ENDIF -->"><a href="{U_INDEX}" title="{L_INDEX}" class="menu-home"><span>{L_INDEX}</span></a></li>
+	<!-- BEGIN navlinks(-2) -->
+		<li class="nav-forum <!-- IF navlinks.S_LAST_ROW --> active<!-- ENDIF -->"><a href="{navlinks.U_VIEW_FORUM}" class="menu-forum"><span>{navlinks.FORUM_NAME}</span></a></li>
+	<!-- END navlinks -->
+</ul>
 
 <div class="topic-actions">
 	<div class="buttons">
@@ -261,8 +264,6 @@
 	<!-- ENDIF -->
 </div>
 
-<!-- INCLUDE jumpbox.html -->
-
 <!-- IF S_TOPIC_MOD -->
 	<form method="post" action="{S_MOD_ACTION}">
 	<fieldset class="quickmod">
@@ -272,9 +273,5 @@
 	</form>
 <!-- ENDIF -->
 
-<!-- IF S_DISPLAY_ONLINE_LIST -->
-	<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
-	<p>{LOGGED_IN_USER_LIST}</p>
-<!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->
