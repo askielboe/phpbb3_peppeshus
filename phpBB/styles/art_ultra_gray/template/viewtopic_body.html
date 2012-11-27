@@ -237,12 +237,14 @@
 	</form>
 <!-- ENDIF -->
 
-<ul class="menu left">
-	<li class="nav-jumpbox<!-- IF SCRIPT_NAME == 'index' and not .navlinks --> active<!-- ENDIF -->"><a href="{U_INDEX}" title="{L_INDEX}" class="menu-home"><span>{L_INDEX}</span></a></li>
-	<!-- BEGIN navlinks(-2) -->
-		<li class="nav-forum <!-- IF navlinks.S_LAST_ROW --> active<!-- ENDIF -->"><a href="{navlinks.U_VIEW_FORUM}" class="menu-forum"><span>{navlinks.FORUM_NAME}</span></a></li>
-	<!-- END navlinks -->
-</ul>
+<div>
+	<ul class="menu left">
+		<li class="nav-jumpbox<!-- IF SCRIPT_NAME == 'index' and not .navlinks --> active<!-- ENDIF -->"><a href="{U_INDEX}" title="{L_INDEX}" class="menu-home"><span>{L_INDEX}</span></a></li>
+		<!-- BEGIN navlinks(-2) -->
+			<li class="nav-forum <!-- IF navlinks.S_LAST_ROW --> active<!-- ENDIF -->"><a href="{navlinks.U_VIEW_FORUM}" class="menu-forum"><span>{navlinks.FORUM_NAME}</span></a></li>
+		<!-- END navlinks -->
+	</ul>
+</div>
 
 <div class="topic-actions">
 	<div class="buttons">
