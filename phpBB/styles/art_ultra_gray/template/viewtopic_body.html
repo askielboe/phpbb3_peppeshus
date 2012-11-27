@@ -257,23 +257,27 @@
 	<!-- ENDIF -->
 </div>
 
-<div class="topic-actions">
+<p>
 	<ul class="menu left">
 		<li class="nav-jumpbox<!-- IF SCRIPT_NAME == 'index' and not .navlinks --> active<!-- ENDIF -->"><a href="{U_INDEX}" title="{L_INDEX}" class="menu-home"><span>{L_INDEX}</span></a></li>
 		<!-- BEGIN navlinks(-2) -->
 			<li class="nav-forum <!-- IF navlinks.S_LAST_ROW --> active<!-- ENDIF -->"><a href="{navlinks.U_VIEW_FORUM}" class="menu-forum"><span>{navlinks.FORUM_NAME}</span></a></li>
 		<!-- END navlinks -->
 	</ul>
-</div>
+	
+	<div align="right">
+		<!-- IF S_TOPIC_MOD -->
+			<form method="post" action="{S_MOD_ACTION}">
+			<fieldset class="quickmod">
+				<label for="quick-mod-select">{L_QUICK_MOD}:</label> {S_TOPIC_MOD} <input type="submit" value="{L_GO}" class="button2" />
+				{S_FORM_TOKEN}
+			</fieldset>
+			</form>
+		<!-- ENDIF -->
+	</div>
+</p>
 
-<!-- IF S_TOPIC_MOD -->
-	<form method="post" action="{S_MOD_ACTION}">
-	<fieldset class="quickmod">
-		<label for="quick-mod-select">{L_QUICK_MOD}:</label> {S_TOPIC_MOD} <input type="submit" value="{L_GO}" class="button2" />
-		{S_FORM_TOKEN}
-	</fieldset>
-	</form>
-<!-- ENDIF -->
+
 
 
 <!-- INCLUDE overall_footer.html -->
