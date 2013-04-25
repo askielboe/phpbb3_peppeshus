@@ -25,14 +25,22 @@
          The phpBB Group is not responsible for the content of this page and forum. For more information
          about phpBB please visit http://www.phpbb.com
 -->
-	
+
 	<link rel="shortcut icon" href="http://peppeshus.dk/forum/images/icons/shortcut_icon.ico">
-	
+
 	<title>{SITENAME} - {PAGE_TITLE}</title>
 	<link rel="stylesheet" href="{T_STYLESHEET_LINK}">
 	<!-- INCLUDE scripts_header.html -->
+
+	<!-- Tapatalk Plugin -->
+	<link href="{ROOT_PATH}mobiquo/smartbanner/appbanner.css" rel="stylesheet" type="text/css" media="screen" />
+	<script type="text/javascript" src="{ROOT_PATH}mobiquo/smartbanner/appbanner.js"></script>
+
 </head>
 <body class="phpbb section-{SCRIPT_NAME}">
+
+<!-- Tapatalk Plugin -->
+<script type="text/javascript">tapatalkDetect()</script>
 
 <div class="wrap-top" id="wrap">
 	<div class="wrap-top-top"><div><div></div></div></div>
@@ -141,9 +149,9 @@
 			</li>
 			<!-- ENDIF -->
 		</ul>
-		
+
 		<div class="clear"></div>
-		
+
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="information" class="rules">
 			<div class="inner"><span class="corners-top"><span></span></span>
@@ -162,4 +170,4 @@
 		</div>
 		<!-- ENDIF -->
 
-		
+
