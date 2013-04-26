@@ -2622,6 +2622,34 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 
 	$url = (!$params) ? "{$phpbb_root_path}viewforum.$phpEx" : "{$phpbb_root_path}viewtopic.$phpEx";
 	$url = append_sid($url, 'f=' . $data['forum_id'] . $params) . $add_anchor;
+	// BEGIN mobiquo Mod push service
+	if(!isset($tapatalk_push_run)) $tapatalk_push_run = true;
+	if ($url && isset($config['mobiquo_push']) && $post_approval && $tapatalk_push_run)
+    {
+        require_once($phpbb_root_path . $config['tapatalkdir'].'/push_hook.' . $phpEx);
+        $user_name_tag_arr = tt_get_tag_list($data['message']);
+        switch ($mode)
+        {
+        	case 'reply':
+        		tapatalk_push_reply($data);
+        		tapatalk_push_quote($data,$user_name_tag_arr,'tag');
+        		break;
+        	case 'post':
+        		tapatalk_push_newtopic($data);
+        		tapatalk_push_quote($data,$user_name_tag_arr,'tag');
+        		break;
+        	case 'quote':
+        		preg_match_all('/quote=&quot;(.*?)&quot;/is', $data['message'],$matches);
+        		$user_name_arr = array_unique($matches[1]);
+        		unset($matches);		        		
+        		tapatalk_push_reply($data);
+        		tapatalk_push_quote($data,$user_name_arr,'quote');
+        		tapatalk_push_quote($data,$user_name_tag_arr,'tag');
+        		break;
+        }		   
+    }
+    $tapatalk_push_run = false;
+	// END mobiquo Mod
 
 	return $url;
 }

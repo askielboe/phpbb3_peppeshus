@@ -192,6 +192,12 @@ while ($row = $db->sql_fetchrow($result))
 	{
 		$on_page[1] = '';
 	}
+	//start taptalk hook
+    if(file_exists($phpbb_root_path.(!empty($config['tapatalkdir']) ? $config['tapatalkdir'] : 'mobiquo').'/include/online_hook.php'))
+    {
+        include  $phpbb_root_path.(!empty($config['tapatalkdir']) ? $config['tapatalkdir'] : 'mobiquo').'/include/online_hook.php';
+    }
+    //end tapatalk hook
 
 	switch ($on_page[1])
 	{

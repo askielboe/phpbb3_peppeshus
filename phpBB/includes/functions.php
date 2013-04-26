@@ -4540,6 +4540,17 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 
 	// Send a proper content-language to the output
 	$user_lang = $user->lang['USER_LANG'];
+
+	$user->add_lang('mods/info_acp_mobiquo');
+	if(file_exists($phpbb_root_path.(!empty($config['tapatalkdir']) ? $config['tapatalkdir'] : 'mobiquo').'/include/function_hook.php'))
+	{
+		require_once $phpbb_root_path.(!empty($config['tapatalkdir']) ? $config['tapatalkdir'] : 'mobiquo').'/include/function_hook.php';
+		$tapatalk_location_url = get_tapatlk_location();
+	}
+	else 
+	{
+		$tapatalk_location_url = '';
+	}
 	if (strpos($user_lang, '-x-') !== false)
 	{
 		$user_lang = substr($user_lang, 0, strpos($user_lang, '-x-'));
@@ -4583,6 +4594,12 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'_SID'				=> $_SID,
 		'SESSION_ID'		=> $user->session_id,
 		'ROOT_PATH'			=> $phpbb_root_path,
+		'TAPATALK_APP_IOS_ID'      => isset($config['tapatalk_app_ios_id']) ? addslashes($config['tapatalk_app_ios_id']) : '' ,
+		'TAPATALK_APP_BANNER_MSG'      => isset($config['tapatalk_app_banner_msg']) ? addslashes(preg_replace("/\r?\n/", "<br />",$config['tapatalk_app_banner_msg'])) : '' ,
+		'TAPATALK_ANDROID_URL' => isset($config['tapatalk_android_url']) ? addslashes($config['tapatalk_android_url']) : '' ,
+		'TAPATALK_KINDLE_URL' => isset($config['tapatalk_kindle_url']) ? addslashes($config['tapatalk_kindle_url']) : '' ,
+		'TAPATALK_DIR' => generate_board_url().'/' . (!empty($config['tapatalkdir']) ? $config['tapatalkdir'] : 'mobiquo' ) ,
+		'TAPATALK_LOCATION_URL' => $tapatalk_location_url,
 		'BOARD_URL'			=> $board_url,
 
 		'L_LOGIN_LOGOUT'	=> $l_login_logout,

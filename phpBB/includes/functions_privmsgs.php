@@ -1798,6 +1798,15 @@ function submit_pm($mode, $subject, &$data, $put_in_outbox = true)
 	$db->sql_transaction('commit');
 
 	// Send Notifications
+// BEGIN mobiquo Mod push service
+	if(!isset($tapatalk_push_run)) $tapatalk_push_run = true;
+	if(!empty($data['msg_id']) && isset($config['mobiquo_push']) && ($mode != 'edit') && $tapatalk_push_run)
+	{
+		require_once($phpbb_root_path . $config['tapatalkdir'].'/push_hook.' . $phpEx);
+    	tapatalk_push_pm($user_id, $data['msg_id'], $subject);
+	}
+	$tapatalk_push_run = false;
+// END mobiquo Mod
 	if ($mode != 'edit')
 	{
 		pm_notification($mode, $data['from_username'], $recipients, $subject, $data['message'], $data['msg_id']);
